@@ -1,1 +1,1 @@
-The length of the longest subarray is: 3
+This is the answer for variant 1: YES
