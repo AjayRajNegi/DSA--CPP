@@ -1,1 +1,2 @@
-This is the answer for variant 1: YES
+After sorting:
+0 0 1 1 2 2 
