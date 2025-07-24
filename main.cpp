@@ -1,45 +1,79 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-  vector<int> RearrangebySign(vector<int>A){
-    
-  int n = A.size();
-  
-  // Define array for storing the ans separately.
-  vector<int> ans(n,0);
-  
-  // positive elements start from 0 and negative from 1.
-  int posIndex = 0, negIndex = 1;
-  for(int i = 0;i<n;i++){
-      
-      // Fill negative elements in odd indices and inc by 2.
-      if(A[i]<0){
-          ans[negIndex] = A[i];
-          negIndex+=2;
-      }
-      
-      // Fill positive elements in even indices and inc by 2.
-      else{
-          ans[posIndex] = A[i];
-          posIndex+=2;
-      }
+void markRow(vector<vector<int>> &matrix, int n, int m, int i)
+{
+  // set all non-zero elements as -1 in the row i:
+  for (int j = 0; j < m; j++)
+  {
+    if (matrix[i][j] != 0)
+    {
+      matrix[i][j] = -1;
+    }
   }
-  
-  return ans;
-    
 }
 
-int main() {
-    
-  // Array Initialisation.
-  
-  vector<int> A = {1,2,-4,-5};
+void markCol(vector<vector<int>> &matrix, int n, int m, int j)
+{
+  // set all non-zero elements as -1 in the col j:
+  for (int i = 0; i < n; i++)
+  {
+    if (matrix[i][j] != 0)
+    {
+      matrix[i][j] = -1;
+    }
+  }
+}
 
-  vector<int> ans = RearrangebySign(A);
-  
-  for (int i = 0; i < ans.size(); i++) {
-    cout << ans[i] << " ";
+vector<vector<int>> zeroMatrix(vector<vector<int>> &matrix, int n, int m)
+{
+
+  // Set -1 for rows and cols
+  // that contains 0. Don't mark any 0 as -1:
+
+  for (int i = 0; i < n; i++)
+  {
+    for (int j = 0; j < m; j++)
+    {
+      if (matrix[i][j] == 0)
+      {
+        markRow(matrix, n, m, i);
+        markCol(matrix, n, m, j);
+      }
+    }
   }
 
+  // Finally, mark all -1 as 0:
+  for (int i = 0; i < n; i++)
+  {
+    for (int j = 0; j < m; j++)
+    {
+      if (matrix[i][j] == -1)
+      {
+        matrix[i][j] = 0;
+      }
+    }
+  }
+
+  return matrix;
+}
+
+int main()
+{
+  vector<vector<int>> matrix = {{1, 1, 1}, {1, 0, 1}, {1, 1, 1}};
+  int n = matrix.size();
+  int m = matrix[0].size();
+  vector<vector<int>> ans = zeroMatrix(matrix, n, m);
+
+  cout << "The Final matrix is: n";
+  cout << endl;
+  for (auto it : ans)
+  {
+    for (auto ele : it)
+    {
+      cout << ele << " ";
+    }
+    cout << endl;
+  }
   return 0;
 }
