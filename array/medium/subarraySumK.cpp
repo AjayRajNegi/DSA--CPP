@@ -1,13 +1,15 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int findAllSubarraysWithGivenSum(vector < int > & arr, int k) {
+int findAllSubarraysWithGivenSum(vector<int> &arr, int k)
+{
     int n = arr.size(); // size of the given array.
     map<int, int> mpp;
     int preSum = 0, cnt = 0;
 
     mpp[0] = 1; // Setting 0 in the map.
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++)
+    {
         // add current element to prefix Sum:
         preSum += arr[i];
 
