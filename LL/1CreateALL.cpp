@@ -3,8 +3,8 @@ using namespace std;
 
 class Node
 {
-public: // ✅ use lowercase 'public'
-    int data;  // the data value
+public:         // ✅ use lowercase 'public'
+    int data;   // the data value
     Node *next; // the pointer to the next value
 
 public: // ✅ second 'public' is fine, but optional
