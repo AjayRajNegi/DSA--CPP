@@ -9,17 +9,19 @@ struct Node
     Node(int val) : data(val), next(nullptr) {}
 };
 
-bool hasCycle(Node* head) {
-    unordered_set<Node*> visited;
-    Node* current = head;
-    while (current != nullptr) {
-        if (visited.count(current)) return true;
+bool hasCycle(Node *head)
+{
+    unordered_set<Node *> visited;
+    Node *current = head;
+    while (current != nullptr)
+    {
+        if (visited.count(current))
+            return true;
         visited.insert(current);
         current = current->next;
     }
     return false;
 }
-
 
 int main()
 {
