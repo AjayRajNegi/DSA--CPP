@@ -9,17 +9,32 @@ struct Node
     Node(int val) : data(val), next(nullptr) {}
 };
 
-bool hasCycle(Node* head) {
-    unordered_set<Node*> visited;
-    Node* current = head;
-    while (current != nullptr) {
-        if (visited.count(current)) return true;
+bool hasCycle(Node *head)
+{
+    unordered_set<Node *> visited;
+    Node *current = head;
+    while (current != nullptr)
+    {
+        if (visited.count(current))
+            return true;
         visited.insert(current);
         current = current->next;
     }
     return false;
 }
-
+bool hasCycle2(Node *head)
+{
+    unordered_set<Node *> visited;
+    Node *current = head;
+    while (current != nullptr)
+    {
+        if (visited.count(current))
+            return true;
+        visited.insert(current);
+        current = current->next;
+    }
+    return false;
+}
 
 int main()
 {
@@ -33,7 +48,7 @@ int main()
     // Create cycle: 343 -> 4
     head->next->next->next->next->next->next = head->next;
 
-    cout << (hasCycle(head) ? "Cycle detected" : "No cycle") << endl;
+    cout << (hasCycle2(head) ? "Cycle detected" : "No cycle") << endl;
 
     return 0;
 }
