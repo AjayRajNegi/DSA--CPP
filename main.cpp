@@ -24,16 +24,20 @@ bool hasCycle(Node *head)
 }
 bool hasCycle2(Node *head)
 {
-    unordered_set<Node *> visited;
-    Node *current = head;
-    while (current != nullptr)
+    if (!head || !head->next)
+        return false;
+
+    Node *slow = head;
+    Node *fast = head->next;
+
+    while (slow != fast)
     {
-        if (visited.count(current))
-            return true;
-        visited.insert(current);
-        current = current->next;
+        if (!fast || !fast->next)
+            return false;
+        slow = slow->next;
+        fast = fast->next->next;
     }
-    return false;
+    return true;
 }
 
 int main()
