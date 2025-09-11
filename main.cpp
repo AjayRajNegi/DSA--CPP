@@ -9,24 +9,29 @@ struct ListNode
     ListNode(int val) : val(val), next(nullptr) {}
 };
 
-ListNode *segregateOddEven(ListNode *head)
+ListNode *reverseLL(ListNode *head)
 {
-    if (head == NULL || head->next == NULL)
+    ListNode *temp = head;
+
+    if (!temp || !temp->next)
         return head;
 
-    ListNode *odd = head;
-    ListNode *even = head->next;
-    ListNode *evenHead = even;
-
-    while (even != NULL && even->next != NULL)
+    vector<int> arr;
+    int cnt = 0;
+    while (temp != nullptr)
     {
-        odd->next = even->next;
-        odd = odd->next;
-
-        even->next = odd->next;
-        even = even->next;
+        arr.push_back(temp->val);
+        temp = temp->next;
+        cnt++;
     }
-    odd->next = evenHead;
+
+    temp = head;
+    while (temp != nullptr)
+    {
+        temp->val = arr[cnt];
+        temp = temp->next;
+        cnt--;
+    }
     return head;
 }
 
@@ -40,7 +45,7 @@ int main()
     head->next->next->next->next->next = new ListNode(343);
 
     // cout << (deleteMiddle(head) ? "Cycle detected" : "No cycle") << endl;
-    cout << segregateOddEven(head);
+    cout << reverseLL(head);
 
     return 0;
 }
